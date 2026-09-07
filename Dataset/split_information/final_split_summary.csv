@@ -1,0 +1,15 @@
+class,total,train,validation,test
+Class_1_water_iris,71,50,11,10
+Class_2_pistia_stratiotes,66,46,10,10
+Class_3_lily_leaf,93,65,14,14
+Class_4_lotus-leaf,82,57,12,13
+Class_5_water_popy,77,54,12,11
+Class_6_salvania,75,52,11,12
+Class_7_chinese_water_spinach,67,47,10,10
+Class_8_water_plantain,74,52,11,11
+Class_9_mexican_sword_lily,78,55,12,11
+Class_10_lippia_alba,71,50,11,10
+Class_11_marsilea_minuta,78,55,12,11
+Class_12_duck_weeds,71,50,11,10
+Class_13_topapana,87,61,13,13
+Class_14_kachuripana,72,50,11,11

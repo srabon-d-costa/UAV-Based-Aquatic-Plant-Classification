@@ -1,0 +1,4 @@
+image_key,true_class,models_failing,predictions,mean_calibrated_confidence,max_calibrated_confidence,mean_predictive_entropy,both_survive_90pct_coverage,any_survives_90pct_coverage
+class_10_lippia_alba/image_708.jpg,Lippia Alba,EfficientNetB0_Finetuned | ResNet50_Finetuned,ResNet50_Finetuned: Chinese Water Spinach | EfficientNetB0_Finetuned: Chinese Water Spinach,0.9835851788520813,0.9896788597106934,0.08626861125230785,True,True
+class_7_chinese_water_spinach/image_493.jpg,Chinese Water Spinach,EfficientNetB0_Finetuned | ResNet50_Finetuned,ResNet50_Finetuned: Water Iris | EfficientNetB0_Finetuned: Lippia Alba,0.619779959321022,0.775156557559967,1.0144534707069397,False,False
+class_9_mexican_sword_lily/image_622.jpg,Mexican Sword Lily,EfficientNetB0_Finetuned | ResNet50_Finetuned,ResNet50_Finetuned: Water Plantain | EfficientNetB0_Finetuned: Water Plantain,0.7693597376346588,0.9567784667015076,0.6211723387241364,False,True

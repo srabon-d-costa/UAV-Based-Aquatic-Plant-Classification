@@ -1,0 +1,11 @@
+true_class_pretty,pred_class_pretty,error_count,unique_images,models_affected,mean_confidence,max_confidence,mean_entropy,shared_error_records,confusion_pair
+Lippia Alba,Chinese Water Spinach,3,2,2,0.9886992573738098,0.9989274144172668,0.060719441001613896,2,Lippia Alba -> Chinese Water Spinach
+Mexican Sword Lily,Water Plantain,2,1,2,0.7693597376346588,0.9567784667015076,0.6211723387241364,2,Mexican Sword Lily -> Water Plantain
+Chinese Water Spinach,Water Iris,1,1,1,0.775156557559967,0.775156557559967,0.6185622215270996,1,Chinese Water Spinach -> Water Iris
+Pistia Stratiotes,Lippia Alba,1,1,1,0.755275309085846,0.755275309085846,0.6744877099990845,0,Pistia Stratiotes -> Lippia Alba
+Kachuripana,Water Plantain,1,1,1,0.6974825859069824,0.6974825859069824,0.968070387840271,0,Kachuripana -> Water Plantain
+Marsilea Minuta,Water Popy,1,1,1,0.5245881080627441,0.5245881080627441,1.4945186376571655,0,Marsilea Minuta -> Water Popy
+Water Iris,Mexican Sword Lily,1,1,1,0.4807360768318176,0.4807360768318176,0.971571445465088,0,Water Iris -> Mexican Sword Lily
+Chinese Water Spinach,Lippia Alba,1,1,1,0.464403361082077,0.464403361082077,1.4103447198867798,1,Chinese Water Spinach -> Lippia Alba
+Marsilea Minuta,Salvania,1,1,1,0.4454332888126373,0.4454332888126373,1.1597213745117188,0,Marsilea Minuta -> Salvania
+Kachuripana,Water Iris,1,1,1,0.3943334519863128,0.3943334519863128,1.458810806274414,0,Kachuripana -> Water Iris

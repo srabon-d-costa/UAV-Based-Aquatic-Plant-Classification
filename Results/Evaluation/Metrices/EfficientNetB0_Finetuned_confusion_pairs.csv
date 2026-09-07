@@ -1,0 +1,7 @@
+True Class,Predicted Class,Count
+Class_10_lippia_alba,Class_7_chinese_water_spinach,2
+Class_11_marsilea_minuta,Class_5_water_popy,1
+Class_11_marsilea_minuta,Class_6_salvania,1
+Class_1_water_iris,Class_9_mexican_sword_lily,1
+Class_7_chinese_water_spinach,Class_10_lippia_alba,1
+Class_9_mexican_sword_lily,Class_8_water_plantain,1

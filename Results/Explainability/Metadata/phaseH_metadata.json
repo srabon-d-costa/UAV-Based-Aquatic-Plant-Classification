@@ -1,0 +1,33 @@
+{
+  "phase": "Phase H \u2014 Grad-CAM Explainability & Failure Analysis",
+  "seed": 42,
+  "test_images": 157,
+  "num_classes": 14,
+  "models": [
+    "ResNet50_Finetuned",
+    "EfficientNetB0_Finetuned"
+  ],
+  "model_states": "Fine-tuned final checkpoints",
+  "resnet_target_layer": "layer4[-1]",
+  "efficientnet_target_layer": "features[-1]",
+  "explanation_method": "Grad-CAM",
+  "gradcam_targets_for_correct_cases": "Predicted class",
+  "gradcam_targets_for_error_cases": [
+    "Predicted class",
+    "True class"
+  ],
+  "case_selection_source": "Phase G calibrated confidence and predictive entropy",
+  "selected_case_types": [
+    "High-confidence correct",
+    "Low-confidence correct",
+    "High-confidence error"
+  ],
+  "selected_cases_per_model": 6,
+  "all_test_errors_also_explained": true,
+  "localization_ground_truth_used": false,
+  "localization_accuracy_reported": false,
+  "training_or_tuning_performed": false,
+  "interpretation_note": "Grad-CAM is used as a qualitative explanation tool. CAM concentration metrics are descriptive and are not treated as localization accuracy because localization ground truth masks are not used in this classification evaluation.",
+  "device": "cuda",
+  "gpu": "Tesla T4"
+}

@@ -1,0 +1,74 @@
+{
+  "phase": "Phase E \u2014 Corruption Robustness Evaluation",
+  "seed": 42,
+  "test_images": 157,
+  "num_classes": 14,
+  "image_size": 224,
+  "models": [
+    "ResNet50_Finetuned",
+    "EfficientNetB0_Finetuned"
+  ],
+  "clean_baselines": {
+    "ResNet50_Finetuned": {
+      "accuracy_percent": 96.17834394904459,
+      "macro_f1_percent": 95.89647820850828
+    },
+    "EfficientNetB0_Finetuned": {
+      "accuracy_percent": 95.54140127388536,
+      "macro_f1_percent": 95.20536377646545
+    }
+  },
+  "corruptions": [
+    "gaussian_blur",
+    "gaussian_noise",
+    "brightness",
+    "contrast",
+    "jpeg_compression",
+    "occlusion"
+  ],
+  "severity_levels": {
+    "1": "Mild",
+    "2": "Moderate",
+    "3": "Strong"
+  },
+  "corruption_parameters": {
+    "gaussian_blur": {
+      "1": 1.0,
+      "2": 2.0,
+      "3": 3.0
+    },
+    "gaussian_noise": {
+      "1": 0.03,
+      "2": 0.06,
+      "3": 0.1
+    },
+    "brightness": {
+      "1": 0.8,
+      "2": 0.6,
+      "3": 0.4
+    },
+    "contrast": {
+      "1": 0.8,
+      "2": 0.6,
+      "3": 0.4
+    },
+    "jpeg_compression": {
+      "1": 70,
+      "2": 40,
+      "3": 20
+    },
+    "occlusion": {
+      "1": 0.1,
+      "2": 0.2,
+      "3": 0.3
+    }
+  },
+  "total_corrupted_conditions": 18,
+  "total_model_evaluations": 36,
+  "severity_consistent_randomization": true,
+  "gaussian_noise_note": "Same random noise pattern across S1-S3; only magnitude changes.",
+  "occlusion_note": "Same spatial center across S1-S3; only occluded area changes.",
+  "training_performed": false,
+  "tuning_performed": false,
+  "device": "cuda"
+}

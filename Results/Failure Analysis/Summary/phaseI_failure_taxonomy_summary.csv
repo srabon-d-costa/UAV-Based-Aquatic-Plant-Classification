@@ -1,0 +1,11 @@
+Failure Category,Definition,Model,Count,Percent of Model Errors (%)
+Shared cross-model hard sample,The same Test image is misclassified by both final architectures.,ResNet50_Finetuned,3,50.0
+Shared cross-model hard sample,The same Test image is misclassified by both final architectures.,EfficientNetB0_Finetuned,3,42.857142857142854
+Recurrent class-confusion pair,The same true-to-predicted class pair occurs at least twice across final-model errors.,ResNet50_Finetuned,2,33.333333333333336
+Recurrent class-confusion pair,The same true-to-predicted class pair occurs at least twice across final-model errors.,EfficientNetB0_Finetuned,3,42.857142857142854
+High-confidence error,Incorrect prediction with calibrated confidence >= 0.95.,ResNet50_Finetuned,1,16.666666666666668
+High-confidence error,Incorrect prediction with calibrated confidence >= 0.95.,EfficientNetB0_Finetuned,3,42.857142857142854
+Survives ~90% selective coverage,The error remains among the approximately 90% most-confident predictions.,ResNet50_Finetuned,1,16.666666666666668
+Survives ~90% selective coverage,The error remains among the approximately 90% most-confident predictions.,EfficientNetB0_Finetuned,3,42.857142857142854
+Rejected by ~90% selective coverage,The error falls in the approximately 10% least-confident cases and is abstained.,ResNet50_Finetuned,5,83.33333333333333
+Rejected by ~90% selective coverage,The error falls in the approximately 10% least-confident cases and is abstained.,EfficientNetB0_Finetuned,4,57.142857142857146

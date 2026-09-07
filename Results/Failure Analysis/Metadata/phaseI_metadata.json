@@ -1,0 +1,32 @@
+{
+  "phase": "Phase I \u2014 Integrated Failure & Reliability Analysis",
+  "integrated_phases": [
+    "Phase D \u2014 Locked Test Evaluation",
+    "Phase E \u2014 Corruption Robustness",
+    "Phase F \u2014 Calibration & Uncertainty",
+    "Phase G \u2014 Selective Prediction",
+    "Phase H \u2014 Grad-CAM Explainability"
+  ],
+  "test_images": 157,
+  "models": [
+    "ResNet50_Finetuned",
+    "EfficientNetB0_Finetuned"
+  ],
+  "model_training_performed": false,
+  "model_tuning_performed": false,
+  "new_model_inference_performed": false,
+  "high_confidence_error_threshold": 0.95,
+  "moderate_confidence_threshold": 0.8,
+  "selective_coverage_levels": [
+    1.0,
+    0.95,
+    0.9,
+    0.8,
+    0.7
+  ],
+  "shared_error_definition": "The same locked-Test image is misclassified by both final models.",
+  "recurrent_confusion_definition": "A true-to-predicted class pair occurs at least twice across final-model error records.",
+  "gradcam_interpretation": "Grad-CAM concentration is descriptive only; no localization ground truth is used and no localization accuracy is claimed.",
+  "test_threshold_optimization_performed": false,
+  "purpose": "Integrate clean error patterns, corruption robustness, calibration, selective prediction, and Grad-CAM evidence into a final reliability-oriented failure analysis."
+}

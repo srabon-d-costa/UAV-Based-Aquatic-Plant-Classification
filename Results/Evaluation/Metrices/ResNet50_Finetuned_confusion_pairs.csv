@@ -1,0 +1,7 @@
+True Class,Predicted Class,Count
+Class_10_lippia_alba,Class_7_chinese_water_spinach,1
+Class_14_kachuripana,Class_1_water_iris,1
+Class_14_kachuripana,Class_8_water_plantain,1
+Class_2_pistia_stratiotes,Class_10_lippia_alba,1
+Class_7_chinese_water_spinach,Class_1_water_iris,1
+Class_9_mexican_sword_lily,Class_8_water_plantain,1

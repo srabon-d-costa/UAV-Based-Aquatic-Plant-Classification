@@ -1,0 +1,13 @@
+PHASE I — KEY FINDINGS
+======================================================================
+
+1. Shared hard Test images across both final models: 3.
+2. Most frequent confusion pair: Lippia Alba -> Chinese Water Spinach (3 model-error records).
+3. High-confidence errors (calibrated confidence >= 0.95): ResNet50=1, EfficientNet-B0=3.
+4. Errors surviving approximately 90% coverage: ResNet50=1, EfficientNet-B0=3.
+5. Strong-corruption robustness leader: ResNet50_Finetuned (Macro-F1=91.52%).
+6. Lowest post-calibration ECE: ResNet50_Finetuned (ECE=0.0300).
+7. Best confidence-based selective ranking: ResNet50_Finetuned (AURC=0.003375).
+
+Interpretation: many errors are uncertainty-detectable and can be rejected through selective prediction, but a smaller set of high-confidence/shared hard cases remain important residual risks.
+Grad-CAM descriptors are qualitative/descriptive support only; they are not localization accuracy.

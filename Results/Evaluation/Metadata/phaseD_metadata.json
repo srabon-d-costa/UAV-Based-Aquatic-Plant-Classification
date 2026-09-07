@@ -1,0 +1,18 @@
+{
+  "phase": "Phase D \u2014 Locked Test Evaluation",
+  "seed": 42,
+  "image_size": 224,
+  "batch_size": 32,
+  "num_classes": 14,
+  "test_images": 157,
+  "test_directory": "/kaggle/input/datasets/srabondcosta/aqua-plant-final-dataset/AquPlantDS_FINAL/Test",
+  "device": "cuda",
+  "gpu": "Tesla T4",
+  "models_evaluated": [
+    "ResNet50_Frozen",
+    "ResNet50_Finetuned",
+    "EfficientNetB0_Frozen",
+    "EfficientNetB0_Finetuned"
+  ],
+  "training_or_tuning_performed": false
+}

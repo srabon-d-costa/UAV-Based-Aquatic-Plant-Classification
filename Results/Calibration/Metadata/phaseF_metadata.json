@@ -1,0 +1,31 @@
+{
+  "phase": "Phase F \u2014 Calibration & Uncertainty Evaluation",
+  "seed": 42,
+  "validation_images": 161,
+  "test_images": 157,
+  "num_classes": 14,
+  "image_size": 224,
+  "ece_bins": 15,
+  "models": [
+    "ResNet50_Finetuned",
+    "EfficientNetB0_Finetuned"
+  ],
+  "temperature_scaling_fit_set": "Validation only",
+  "locked_test_used_for_temperature_fit": false,
+  "neural_network_training_performed": false,
+  "temperature_values": {
+    "ResNet50_Finetuned": 0.4453571140766144,
+    "EfficientNetB0_Finetuned": 0.5874667167663574
+  },
+  "metrics": [
+    "ECE",
+    "NLL",
+    "Multiclass Brier Score",
+    "Mean Confidence",
+    "Confidence Gap",
+    "Predictive Entropy",
+    "Error-detection AUROC"
+  ],
+  "device": "cuda",
+  "gpu": "Tesla T4"
+}
