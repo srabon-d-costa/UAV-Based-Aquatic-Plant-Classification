@@ -10,13 +10,14 @@ Aquatic vegetation monitoring is essential for environmental assessment, ecosyst
 
 This project presents a UAV-based aquatic plant classification framework using deep learning models to automatically identify aquatic plant species from aerial images.
 
-The framework investigates multiple deep learning architectures and evaluates their performance under realistic conditions through:
+The framework investigates multiple deep learning architectures and evaluates their performance through:
 
 - Classification performance analysis
 - Robustness evaluation
 - Uncertainty calibration
 - Selective prediction
 - Explainable AI analysis
+- Failure analysis
 
 ---
 
@@ -54,17 +55,39 @@ Failure Analysis
 
 # Repository Structure
 
-```
+```text
 UAV-Based-Aquatic-Plant-Classification/
 
-│
 ├── Dataset/
+│   └── split_information/
+│
 ├── Paper/
+│
 ├── Results/
+│   ├── Training/
+│   ├── Evaluation/
+│   ├── Robustness/
+│   ├── Calibration/
+│   ├── Selective Prediction/
+│   ├── Explainability/
+│   └── Failure Analysis/
+│
 ├── src/
-├── requirements.txt
+│   ├── phase_01_dataset_audit/
+│   ├── phase_02_preprocessing/
+│   ├── phase_03_model_training/
+│   ├── phase_04_test_evaluation/
+│   ├── phase_05_robustness/
+│   ├── phase_06_calibration/
+│   ├── phase_07_selective_prediction/
+│   ├── phase_08_explainability/
+│   └── phase_09_failure_analysis/
+│
+├── .gitattributes
+├── .gitignore
 ├── LICENSE
-└── README.md
+├── README.md
+└── requirements.txt
 ```
 
 ---
@@ -82,9 +105,15 @@ Dataset preparation includes:
 - Train/validation/test split generation
 - Image preprocessing
 
-Dataset documentation and split information:
+### Dataset Split Information
 
-[View Dataset Folder](Dataset/)
+[View Dataset Split Information](Dataset/split_information/)
+
+Available files:
+
+- [Final Split Summary](Dataset/split_information/final_split_summary.csv)
+- [Near-Duplicate Groups](Dataset/split_information/near_duplicate_groups.csv)
+- [Verified Near-Duplicates](Dataset/split_information/verified_near_duplicates.csv)
 
 ---
 
@@ -99,6 +128,10 @@ The following deep learning architectures were implemented and evaluated:
 | ResNet50 | Transfer Learning |
 | EfficientNet-B0 | Transfer Learning |
 
+Model training notebooks and trained checkpoints are available in:
+
+[View Model Training & Checkpoints](src/phase_03_model_training/)
+
 ---
 
 # Experimental Phases
@@ -110,11 +143,9 @@ Purpose:
 - Verify dataset integrity
 - Identify duplicate samples
 - Analyze dataset distribution
-- Prevent data leakage
+- Reduce potential data leakage
 
-Implementation:
-
-[Open Phase A - Dataset Audit](src/Phase_A_Dataset_Audit/)
+[Open Phase A — Dataset Audit](src/phase_01_dataset_audit/)
 
 ---
 
@@ -127,9 +158,7 @@ Includes:
 - Dataset preparation
 - Input pipeline development
 
-Implementation:
-
-[Open Phase B - Preprocessing](src/Phase_B_Preprocessing/)
+[Open Phase B — Preprocessing](src/phase_02_preprocessing/)
 
 ---
 
@@ -142,13 +171,11 @@ Implemented models:
 - ResNet50
 - EfficientNet-B0
 
-Implementation:
-
-[Open Phase C - Model Training](src/Phase_C_Model_Training/)
+[Open Phase C — Model Training](src/phase_03_model_training/)
 
 ---
 
-## Phase D — Test Evaluation
+## Phase D — Locked Test Evaluation
 
 Evaluation includes:
 
@@ -157,103 +184,97 @@ Evaluation includes:
 - Prediction analysis
 - Model comparison
 
-Implementation:
-
-[Open Phase D - Test Evaluation](src/Phase_D_Test_Evaluation/)
+[Open Phase D — Test Evaluation](src/phase_04_test_evaluation/)
 
 ---
 
 ## Phase E — Robustness Evaluation
 
-The trained models were evaluated under different image corruption conditions to analyze reliability.
+The trained models were evaluated under image corruption conditions to analyze their robustness.
 
 Includes:
 
 - Corruption testing
 - Performance degradation analysis
-- Severity analysis
+- Severity-based evaluation
 
-Implementation:
-
-[Open Phase E - Robustness Evaluation](src/Phase_E_Robustness/)
+[Open Phase E — Robustness Evaluation](src/phase_05_robustness/)
 
 ---
 
 ## Phase F — Calibration & Uncertainty Analysis
 
-Prediction confidence reliability was evaluated using:
+Prediction confidence and calibration were evaluated using:
 
-- Reliability diagrams
+- Reliability analysis
 - Expected Calibration Error (ECE)
 - Brier score analysis
 - Uncertainty evaluation
 
-Implementation:
-
-[Open Phase F - Calibration Analysis](src/Phase_F_Calibration/)
+[Open Phase F — Calibration & Uncertainty](src/phase_06_calibration/)
 
 ---
 
 ## Phase G — Selective Prediction
 
-This phase evaluates the capability of models to reject uncertain predictions.
+This phase investigates the ability of the models to reject uncertain predictions.
 
 Includes:
 
 - Confidence threshold analysis
 - Risk-coverage analysis
-- Error rejection capability
+- Error rejection analysis
 
-Implementation:
-
-[Open Phase G - Selective Prediction](src/Phase_G_Selective_Prediction/)
+[Open Phase G — Selective Prediction](src/phase_07_selective_prediction/)
 
 ---
 
-## Phase H — Explainable AI
+## Phase H — Explainability
 
-Model decision analysis was performed using:
+Model decisions were analyzed using explainability techniques.
+
+Includes:
 
 - Grad-CAM visualization
 - Attention region analysis
+- Error-case visualization
 
-Implementation:
-
-[Open Phase H - Explainability](src/Phase_H_Explainability/)
+[Open Phase H — Explainability](src/phase_08_explainability/)
 
 ---
 
 ## Phase I — Failure Analysis
 
-Analysis of:
+The final phase analyzes model failure patterns.
+
+Includes:
 
 - Misclassified samples
 - Confusion patterns
+- Cross-model errors
+- Failure characteristics
 - Model limitations
-- Error characteristics
 
-Implementation:
-
-[Open Phase I - Failure Analysis](src/Phase_I_Failure_Analysis/)
+[Open Phase I — Failure Analysis](src/phase_09_failure_analysis/)
 
 ---
 
 # Results
 
-All experimental outputs are organized inside:
+All experimental outputs are organized in the Results directory.
 
-[View Results Folder](Results/)
-
-The repository contains:
+[View All Results](Results/)
 
 ## Training Results
 
 Includes:
 
-- Training accuracy curves
+- Accuracy curves
 - Loss curves
 - Macro F1-score curves
-- Training history files
+- Training history
+
+[View Training Results](Results/Training/)
 
 ---
 
@@ -262,9 +283,11 @@ Includes:
 Includes:
 
 - Confusion matrices
-- Classification reports
-- Prediction analysis
-- Test performance comparison
+- Classification metrics
+- Test predictions
+- Model comparison
+
+[View Evaluation Results](Results/Evaluation/)
 
 ---
 
@@ -276,15 +299,21 @@ Includes:
 - Performance degradation analysis
 - Severity-based analysis
 
+[View Robustness Results](Results/Robustness/)
+
 ---
 
 ## Calibration Results
 
 Includes:
 
-- Reliability diagrams
+- Reliability analysis
 - Calibration metrics
+- Expected Calibration Error
+- Brier score analysis
 - Uncertainty analysis
+
+[View Calibration Results](Results/Calibration/)
 
 ---
 
@@ -294,7 +323,10 @@ Includes:
 
 - Risk-coverage curves
 - Confidence threshold analysis
+- Selective accuracy analysis
 - Error rejection analysis
+
+[View Selective Prediction Results](Results/Selective%20Prediction/)
 
 ---
 
@@ -304,6 +336,9 @@ Includes:
 
 - Grad-CAM visualizations
 - Model attention analysis
+- Selected prediction cases
+
+[View Explainability Results](Results/Explainability/)
 
 ---
 
@@ -313,24 +348,25 @@ Includes:
 
 - Error analysis
 - Confusion patterns
-- Failure case investigation
+- Cross-model failure analysis
+- Priority failure cases
+
+[View Failure Analysis Results](Results/Failure%20Analysis/)
 
 ---
 
-# Trained Models
+# Trained Model Checkpoints
 
-The trained model checkpoints are managed using Git LFS.
+The trained model checkpoints are managed using Git LFS and stored with the model-training implementation.
 
-Available models:
-
-[View Model Checkpoints](Models/)
-
-Includes:
+Available architectures include:
 
 - Custom CNN
 - VGG16
 - ResNet50
 - EfficientNet-B0
+
+[View Trained Models](src/phase_03_model_training/)
 
 ---
 
@@ -342,7 +378,13 @@ Clone the repository:
 git clone https://github.com/srabon-d-costa/UAV-Based-Aquatic-Plant-Classification.git
 ```
 
-Install required dependencies:
+Move into the repository:
+
+```bash
+cd UAV-Based-Aquatic-Plant-Classification
+```
+
+Install the required dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -352,71 +394,53 @@ pip install -r requirements.txt
 
 # Running the Project
 
-The implementation is provided through Jupyter notebooks.
-
-Start Jupyter:
-
-```bash
-jupyter notebook
-```
-
-Navigate to:
+The implementation is organized as Jupyter notebooks across nine experimental phases.
 
 [Open Source Code](src/)
 
-Run the required experimental phase notebook.
+The recommended execution sequence is:
 
-Recommended execution order:
+```text
+Phase 01 → Phase 02 → Phase 03 → Phase 04 → Phase 05
+    → Phase 06 → Phase 07 → Phase 08 → Phase 09
+```
 
-```
-Phase A → Phase I
-```
+Each phase corresponds to a specific stage of the research pipeline.
 
 ---
 
 # Reproducibility
 
-To reproduce the experiments:
+To reproduce the experimental workflow:
 
-1. Clone the repository.
+1. Clone this repository.
+2. Install the packages listed in `requirements.txt`.
+3. Prepare the dataset according to the dataset split information.
+4. Execute the notebooks sequentially from Phase 01 to Phase 09.
+5. Compare the generated outputs with the provided experimental results.
 
-2. Install dependencies:
+Useful links:
 
-```bash
-pip install -r requirements.txt
-```
-
-3. Prepare the dataset according to:
-
-[Dataset Documentation](Dataset/)
-
-4. Execute notebooks sequentially:
-
-[Source Code](src/)
-
-5. Generated outputs are available in:
-
-[Results](Results/)
+- [Dataset Split Information](Dataset/split_information/)
+- [Source Code](src/)
+- [Experimental Results](Results/)
+- [Model Training & Checkpoints](src/phase_03_model_training/)
 
 ---
 
 # Paper
 
-Research documents are available in:
+Research documents associated with this project are available in:
 
 [Open Paper Folder](Paper/)
 
-Including:
-
-- Manuscript
-- Conference paper version
-- Poster presentation
+The folder contains the research manuscript and related project materials.
 
 ---
 
 # Citation
 
-If you use this repository in your research, please cite:
+If you use this repository or its implementation in your research, please cite:
 
 ```bibtex
 @software{uav_aquatic_plant_classification,
@@ -433,14 +457,10 @@ If you use this repository in your research, please cite:
 
 This project is released under the MIT License.
 
-See:
-
-[LICENSE](LICENSE)
-
-for details.
+[View License](LICENSE)
 
 ---
 
 # Acknowledgement
 
-This repository presents a complete deep learning workflow for UAV-based aquatic plant classification, including dataset analysis, model development, robustness evaluation, uncertainty analysis, selective prediction, explainable AI, and failure analysis.
+This repository provides the implementation and experimental artifacts for a UAV-based aquatic plant classification workflow, covering dataset analysis, preprocessing, deep learning model development, locked test evaluation, robustness assessment, calibration and uncertainty analysis, selective prediction, explainability, and failure analysis.
