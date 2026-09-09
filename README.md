@@ -1,76 +1,94 @@
 # UAV-Based-Aquatic-Plant-Classification
 
-A deep learning framework for UAV-based aquatic plant classification using convolutional neural networks, transfer learning, robustness evaluation, uncertainty calibration, selective prediction, and explainable AI.
+A reliability-oriented deep learning framework for UAV-based aquatic plant classification using convolutional neural networks, transfer learning, robustness evaluation, uncertainty calibration, selective prediction, explainable AI, and failure analysis.
 
 ---
 
-# Overview
+## Quick Navigation
 
-Aquatic vegetation monitoring is essential for environmental assessment, ecosystem management, and water resource monitoring. Traditional field-based identification methods are time-consuming and require expert knowledge.
+- [Dataset Information](Dataset/split_information/)
+- [Source Code](src/)
+- [Model Training & Checkpoints](src/phase_03_model_training/)
+- [Experimental Results](Results/)
+- [Research Paper & Materials](Paper/)
+- [Requirements](requirements.txt)
+- [License](LICENSE)
 
-This project presents a UAV-based aquatic plant classification framework using deep learning models to automatically identify aquatic plant species from aerial images.
+---
 
-The framework investigates multiple deep learning architectures and evaluates their performance through:
+## Overview
 
-- Classification performance analysis
-- Robustness evaluation
-- Uncertainty calibration
+Aquatic vegetation monitoring is important for environmental assessment, ecosystem management, biodiversity observation, and water resource monitoring. Traditional field-based identification methods can be time-consuming and often require specialist knowledge.
+
+This project presents a UAV-based aquatic plant classification workflow using deep learning to identify aquatic plant classes from aerial imagery.
+
+Rather than evaluating classification accuracy alone, the project follows a reliability-oriented experimental pipeline covering:
+
+- Dataset integrity and leakage analysis
+- Data preprocessing and augmentation
+- Deep learning model training
+- Locked test-set evaluation
+- Robustness testing
+- Calibration and uncertainty analysis
 - Selective prediction
-- Explainable AI analysis
-- Failure analysis
+- Explainable AI using Grad-CAM
+- Integrated failure analysis
 
 ---
 
-# Project Pipeline
+## Research Workflow
 
 ```text
 Dataset Audit
-      |
-      ↓
+      │
+      ▼
 Data Preprocessing
-      |
-      ↓
+      │
+      ▼
 Model Training
-      |
-      ↓
+      │
+      ▼
 Locked Test Evaluation
-      |
-      ↓
+      │
+      ▼
 Robustness Evaluation
-      |
-      ↓
+      │
+      ▼
 Calibration & Uncertainty Analysis
-      |
-      ↓
+      │
+      ▼
 Selective Prediction
-      |
-      ↓
-Explainable AI
-      |
-      ↓
+      │
+      ▼
+Explainability Analysis
+      │
+      ▼
 Failure Analysis
 ```
 
 ---
 
-# Repository Structure
+## Repository Structure
 
 ```text
 UAV-Based-Aquatic-Plant-Classification/
-
+│
 ├── Dataset/
 │   └── split_information/
 │
 ├── Paper/
+│   ├── Aquatic Plant Poster.pdf
+│   ├── Manuscript.pdf
+│   └── Workflow.docx
 │
 ├── Results/
-│   ├── Training/
-│   ├── Evaluation/
-│   ├── Robustness/
 │   ├── Calibration/
-│   ├── Selective Prediction/
+│   ├── Evaluation/
 │   ├── Explainability/
-│   └── Failure Analysis/
+│   ├── Failure Analysis/
+│   ├── Robustness/
+│   ├── Selective Prediction/
+│   └── Training/
 │
 ├── src/
 │   ├── phase_01_dataset_audit/
@@ -92,285 +110,285 @@ UAV-Based-Aquatic-Plant-Classification/
 
 ---
 
-# Dataset
+## Dataset
 
-The project uses a UAV-based aquatic plant image dataset for multi-class classification.
+The classification workflow uses a UAV-based aquatic plant image dataset containing **14 aquatic plant classes**.
+
+Following dataset auditing and leakage-aware preparation, the final experimental split contains **1,062 images**:
+
+| Split | Images |
+|---|---:|
+| Training | 744 |
+| Validation | 161 |
+| Test | 157 |
+| **Total** | **1,062** |
 
 Dataset preparation includes:
 
 - Dataset integrity verification
+- Class-distribution analysis
+- Corrupted-image checking
 - Duplicate detection
 - Near-duplicate analysis
-- Data cleaning
-- Train/validation/test split generation
-- Image preprocessing
+- SSIM-based verification
+- Group-aware dataset splitting
+- Final leakage verification
 
-### Dataset Split Information
+The raw image dataset is not stored directly in this repository. Dataset split and audit information are provided here:
 
-[View Dataset Split Information](Dataset/split_information/)
-
-Available files:
+### Dataset Files
 
 - [Final Split Summary](Dataset/split_information/final_split_summary.csv)
 - [Near-Duplicate Groups](Dataset/split_information/near_duplicate_groups.csv)
 - [Verified Near-Duplicates](Dataset/split_information/verified_near_duplicates.csv)
+- [Open Dataset Information Folder](Dataset/split_information/)
 
 ---
 
-# Deep Learning Models
+## Deep Learning Models
 
-The following deep learning architectures were implemented and evaluated:
+Four deep learning architectures were investigated:
 
-| Model | Type |
+| Model | Approach |
 |---|---|
-| Custom CNN | Baseline Convolutional Neural Network |
-| VGG16 | Transfer Learning |
-| ResNet50 | Transfer Learning |
-| EfficientNet-B0 | Transfer Learning |
+| Custom CNN | Baseline convolutional neural network |
+| VGG16 | Transfer learning |
+| ResNet50 | Transfer learning |
+| EfficientNet-B0 | Transfer learning |
 
-Model training notebooks and trained checkpoints are available in:
+### Training Notebooks and Checkpoints
 
-[View Model Training & Checkpoints](src/phase_03_model_training/)
+| Model | Training Notebook | Checkpoint |
+|---|---|---|
+| Custom CNN | [Notebook](src/phase_03_model_training/aqua-plant-custom-cnn.ipynb) | [Best Model](src/phase_03_model_training/custom_cnn_best_f1.pth) |
+| VGG16 | [Notebook](src/phase_03_model_training/aqua-plant-vgg16.ipynb) | [Best Model](src/phase_03_model_training/vgg16_stage1_best_f1.pth) |
+| ResNet50 | [Notebook](src/phase_03_model_training/aqua-plant-resnet50-transfer-learning.ipynb) | [Stage 1](src/phase_03_model_training/resnet50_stage1_best.pth) / [Fine-tuned](src/phase_03_model_training/resnet50_finetuned_best.pth) |
+| EfficientNet-B0 | [Notebook](src/phase_03_model_training/aqua-plant-efficientnetB0.ipynb) | [Frozen](src/phase_03_model_training/efficientnet_b0_frozen_best.pth) / [Fine-tuned](src/phase_03_model_training/efficientnet_b0_finetuned_best.pth) |
+
+Model checkpoint files are managed using **Git LFS**.
+
+[Open Complete Model Training Folder](src/phase_03_model_training/)
+
+---
+
+## Key Locked-Test Results
+
+The locked clean-test evaluation stored in the repository reports the following results for the ResNet50 and EfficientNet-B0 configurations:
+
+| Model Configuration | Test Accuracy | Macro-F1 | Macro ROC-AUC | Inference |
+|---|---:|---:|---:|---:|
+| **ResNet50 — Frozen** | **96.18%** | **95.90%** | 0.9994 | 2.98 ms/image |
+| **ResNet50 — Fine-tuned** | **96.18%** | **95.90%** | **0.9995** | 2.82 ms/image |
+| EfficientNet-B0 — Fine-tuned | 95.54% | 95.21% | 0.9974 | **1.42 ms/image** |
+| EfficientNet-B0 — Frozen | 92.99% | 92.66% | 0.9953 | 1.46 ms/image |
+
+The complete locked-test evaluation is available here:
+
+- [Clean Test Summary](Results/Evaluation/Summary/phaseD_clean_test_summary.csv)
+- [Fine-Tuning Ablation](Results/Evaluation/Summary/phaseD_finetuning_ablation.csv)
+- [Model Comparison Figure](Results/Evaluation/Summary/phaseD_clean_test_comparison.png)
+- [Open Evaluation Results](Results/Evaluation/)
 
 ---
 
 # Experimental Phases
 
-## Phase A — Dataset Audit
+## Phase 01 — Dataset Audit
 
-Purpose:
+This phase verifies the reliability of the dataset before model development.
 
-- Verify dataset integrity
-- Identify duplicate samples
-- Analyze dataset distribution
-- Reduce potential data leakage
+Main tasks include:
 
-[Open Phase A — Dataset Audit](src/phase_01_dataset_audit/)
+- Image counting
+- Class-distribution analysis
+- Image-resolution inspection
+- Corrupted-image detection
+- Duplicate checking
+- Dataset cleaning
+- Original split validation
+- Near-duplicate auditing
+- SSIM verification
+- Near-duplicate grouping
+- Group-aware splitting
+- Final leakage verification
+
+[Open Phase 01 — Dataset Audit](src/phase_01_dataset_audit/)
 
 ---
 
-## Phase B — Preprocessing
+## Phase 02 — Preprocessing
 
-Includes:
+This phase prepares the audited dataset for deep learning.
+
+Main tasks include:
 
 - Image preprocessing
+- DataLoader preparation
 - Data augmentation
-- Dataset preparation
-- Input pipeline development
+- Augmentation visualization
+- Class-balance analysis
+- Final preprocessing configuration
 
-[Open Phase B — Preprocessing](src/phase_02_preprocessing/)
+[Open Phase 02 — Preprocessing](src/phase_02_preprocessing/)
 
 ---
 
-## Phase C — Model Training
+## Phase 03 — Model Training
 
-Implemented models:
+This phase trains and evaluates the candidate classification architectures.
+
+Models include:
 
 - Custom CNN
 - VGG16
 - ResNet50
 - EfficientNet-B0
 
-[Open Phase C — Model Training](src/phase_03_model_training/)
+The transfer-learning experiments include frozen and fine-tuned configurations where applicable.
+
+[Open Phase 03 — Model Training](src/phase_03_model_training/)
 
 ---
 
-## Phase D — Locked Test Evaluation
+## Phase 04 — Locked Test Evaluation
+
+This phase evaluates trained models on the locked test set.
 
 Evaluation includes:
 
+- Test accuracy
+- Precision
+- Recall
+- Macro-F1
+- Weighted-F1
+- ROC-AUC
 - Confusion matrices
-- Classification metrics
+- Class-wise metrics
 - Prediction analysis
-- Model comparison
+- Inference-time comparison
+- Fine-tuning ablation
 
-[Open Phase D — Test Evaluation](src/phase_04_test_evaluation/)
-
----
-
-## Phase E — Robustness Evaluation
-
-The trained models were evaluated under image corruption conditions to analyze their robustness.
-
-Includes:
-
-- Corruption testing
-- Performance degradation analysis
-- Severity-based evaluation
-
-[Open Phase E — Robustness Evaluation](src/phase_05_robustness/)
-
----
-
-## Phase F — Calibration & Uncertainty Analysis
-
-Prediction confidence and calibration were evaluated using:
-
-- Reliability analysis
-- Expected Calibration Error (ECE)
-- Brier score analysis
-- Uncertainty evaluation
-
-[Open Phase F — Calibration & Uncertainty](src/phase_06_calibration/)
-
----
-
-## Phase G — Selective Prediction
-
-This phase investigates the ability of the models to reject uncertain predictions.
-
-Includes:
-
-- Confidence threshold analysis
-- Risk-coverage analysis
-- Error rejection analysis
-
-[Open Phase G — Selective Prediction](src/phase_07_selective_prediction/)
-
----
-
-## Phase H — Explainability
-
-Model decisions were analyzed using explainability techniques.
-
-Includes:
-
-- Grad-CAM visualization
-- Attention region analysis
-- Error-case visualization
-
-[Open Phase H — Explainability](src/phase_08_explainability/)
-
----
-
-## Phase I — Failure Analysis
-
-The final phase analyzes model failure patterns.
-
-Includes:
-
-- Misclassified samples
-- Confusion patterns
-- Cross-model errors
-- Failure characteristics
-- Model limitations
-
-[Open Phase I — Failure Analysis](src/phase_09_failure_analysis/)
-
----
-
-# Results
-
-All experimental outputs are organized in the Results directory.
-
-[View All Results](Results/)
-
-## Training Results
-
-Includes:
-
-- Accuracy curves
-- Loss curves
-- Macro F1-score curves
-- Training history
-
-[View Training Results](Results/Training/)
-
----
-
-## Evaluation Results
-
-Includes:
-
-- Confusion matrices
-- Classification metrics
-- Test predictions
-- Model comparison
+[Open Phase 04 — Locked Test Evaluation](src/phase_04_test_evaluation/)
 
 [View Evaluation Results](Results/Evaluation/)
 
 ---
 
-## Robustness Results
+## Phase 05 — Robustness Evaluation
 
-Includes:
+This phase measures model reliability under image corruption and degradation.
 
-- Corruption evaluation
-- Performance degradation analysis
-- Severity-based analysis
+Analysis includes:
+
+- Corruption-based testing
+- Multiple corruption severities
+- Macro-F1 degradation
+- Strong-severity analysis
+- Overall robustness comparison
+
+[Open Phase 05 — Robustness](src/phase_05_robustness/)
 
 [View Robustness Results](Results/Robustness/)
 
 ---
 
-## Calibration Results
+## Phase 06 — Calibration & Uncertainty Analysis
 
-Includes:
+This phase examines whether model confidence corresponds to actual predictive correctness.
 
-- Reliability analysis
-- Calibration metrics
-- Expected Calibration Error
-- Brier score analysis
-- Uncertainty analysis
+Analysis includes:
+
+- Reliability diagrams
+- Expected Calibration Error (ECE)
+- Brier score
+- Negative Log-Likelihood
+- Temperature scaling
+- Prediction uncertainty analysis
+
+[Open Phase 06 — Calibration & Uncertainty](src/phase_06_calibration/)
 
 [View Calibration Results](Results/Calibration/)
 
 ---
 
-## Selective Prediction Results
+## Phase 07 — Selective Prediction
 
-Includes:
+Selective prediction allows a model to abstain from predictions when confidence is insufficient.
 
-- Risk-coverage curves
-- Confidence threshold analysis
-- Selective accuracy analysis
-- Error rejection analysis
+Analysis includes:
+
+- Confidence-threshold sweeps
+- Risk-coverage analysis
+- Selective accuracy
+- Error-rejection efficiency
+- Area Under the Risk-Coverage Curve
+- High-confidence error analysis
+- Low-confidence correct-case analysis
+
+[Open Phase 07 — Selective Prediction](src/phase_07_selective_prediction/)
 
 [View Selective Prediction Results](Results/Selective%20Prediction/)
 
 ---
 
-## Explainability Results
+## Phase 08 — Explainability
 
-Includes:
+This phase analyzes which image regions influence model predictions.
 
-- Grad-CAM visualizations
-- Model attention analysis
-- Selected prediction cases
+Explainability analysis includes:
+
+- Grad-CAM visualization
+- Selected-case interpretation
+- Misclassification visualization
+- Model attention-region analysis
+
+[Open Phase 08 — Explainability](src/phase_08_explainability/)
 
 [View Explainability Results](Results/Explainability/)
 
 ---
 
-## Failure Analysis Results
+## Phase 09 — Failure Analysis
 
-Includes:
+The final phase integrates evidence from previous experiments to investigate model limitations.
 
-- Error analysis
-- Confusion patterns
-- Cross-model failure analysis
+Analysis includes:
+
+- Unified error analysis
+- Top confusion pairs
+- Shared cross-model errors
+- Model-specific errors
+- Confidence and entropy behavior
+- Error survival under selective prediction
+- Strong-corruption comparison
 - Priority failure cases
+- Failure taxonomy
+
+[Open Phase 09 — Failure Analysis](src/phase_09_failure_analysis/)
 
 [View Failure Analysis Results](Results/Failure%20Analysis/)
 
 ---
 
-# Trained Model Checkpoints
+# Experimental Results
 
-The trained model checkpoints are managed using Git LFS and stored with the model-training implementation.
+All generated experimental outputs are organized inside the [`Results`](Results/) directory.
 
-Available architectures include:
+| Result Category | Contents | Link |
+|---|---|---|
+| Training | Accuracy, loss, Macro-F1 curves and training histories | [Open](Results/Training/) |
+| Evaluation | Confusion matrices, metrics, predictions and test summaries | [Open](Results/Evaluation/) |
+| Robustness | Corruption and severity-based robustness analysis | [Open](Results/Robustness/) |
+| Calibration | Reliability, calibration and uncertainty analysis | [Open](Results/Calibration/) |
+| Selective Prediction | Risk-coverage and confidence-threshold analysis | [Open](Results/Selective%20Prediction/) |
+| Explainability | Grad-CAM and model-attention visualizations | [Open](Results/Explainability/) |
+| Failure Analysis | Error patterns and integrated failure investigation | [Open](Results/Failure%20Analysis/) |
 
-- Custom CNN
-- VGG16
-- ResNet50
-- EfficientNet-B0
-
-[View Trained Models](src/phase_03_model_training/)
+[View All Experimental Results](Results/)
 
 ---
 
-# Installation
+## Installation
 
 Clone the repository:
 
@@ -378,13 +396,13 @@ Clone the repository:
 git clone https://github.com/srabon-d-costa/UAV-Based-Aquatic-Plant-Classification.git
 ```
 
-Move into the repository:
+Move into the project directory:
 
 ```bash
 cd UAV-Based-Aquatic-Plant-Classification
 ```
 
-Install the required dependencies:
+Install the required Python packages:
 
 ```bash
 pip install -r requirements.txt
@@ -392,58 +410,106 @@ pip install -r requirements.txt
 
 ---
 
-# Running the Project
+## Running the Project
 
-The implementation is organized as Jupyter notebooks across nine experimental phases.
+The complete implementation is organized into sequential experimental phases under:
 
 [Open Source Code](src/)
 
-The recommended execution sequence is:
+Recommended execution order:
 
 ```text
-Phase 01 → Phase 02 → Phase 03 → Phase 04 → Phase 05
-    → Phase 06 → Phase 07 → Phase 08 → Phase 09
+Phase 01
+   ↓
+Phase 02
+   ↓
+Phase 03
+   ↓
+Phase 04
+   ↓
+Phase 05
+   ↓
+Phase 06
+   ↓
+Phase 07
+   ↓
+Phase 08
+   ↓
+Phase 09
 ```
 
-Each phase corresponds to a specific stage of the research pipeline.
+Because later phases use trained checkpoints and outputs produced by earlier stages, the phases should normally be executed in sequence.
 
 ---
 
-# Reproducibility
+## Reproducibility
 
-To reproduce the experimental workflow:
+For reproducibility:
 
-1. Clone this repository.
-2. Install the packages listed in `requirements.txt`.
-3. Prepare the dataset according to the dataset split information.
-4. Execute the notebooks sequentially from Phase 01 to Phase 09.
-5. Compare the generated outputs with the provided experimental results.
+1. Clone the repository.
+2. Install packages from [`requirements.txt`](requirements.txt).
+3. Obtain and prepare the source dataset.
+4. Follow the verified dataset split information in [`Dataset/split_information`](Dataset/split_information/).
+5. Run the source-code phases sequentially from Phase 01 through Phase 09.
+6. Compare generated outputs with the reference files provided in [`Results`](Results/).
 
-Useful links:
+### Important Resources
 
 - [Dataset Split Information](Dataset/split_information/)
 - [Source Code](src/)
-- [Experimental Results](Results/)
-- [Model Training & Checkpoints](src/phase_03_model_training/)
+- [Training Notebooks](src/phase_03_model_training/)
+- [Evaluation Results](Results/Evaluation/)
+- [All Results](Results/)
+- [Research Materials](Paper/)
 
 ---
 
-# Paper
+## Research Materials
 
-Research documents associated with this project are available in:
+The repository includes the research manuscript and supporting materials.
+
+| File | Description |
+|---|---|
+| [Manuscript.pdf](Paper/Manuscript.pdf) | Research manuscript |
+| [Aquatic Plant Poster.pdf](Paper/Aquatic%20Plant%20Poster.pdf) | Research poster |
+| [Workflow.docx](Paper/Workflow.docx) | Research workflow document |
 
 [Open Paper Folder](Paper/)
 
-The folder contains the research manuscript and related project materials.
+---
+
+## Technologies and Libraries
+
+The implementation primarily uses:
+
+- Python
+- PyTorch
+- TorchVision
+- NumPy
+- Pandas
+- SciPy
+- OpenCV
+- Pillow
+- scikit-image
+- scikit-learn
+- Albumentations
+- Matplotlib
+- Grad-CAM
+- TorchInfo
+- Jupyter
+
+The complete dependency list is available in:
+
+[requirements.txt](requirements.txt)
 
 ---
 
-# Citation
+## Citation
 
-If you use this repository or its implementation in your research, please cite:
+If you use this repository, its implementation, or its experimental resources in your research, please cite the repository:
 
 ```bibtex
-@software{uav_aquatic_plant_classification,
+@software{uav_aquatic_plant_classification_2026,
   author = {Srabon D Costa},
   title = {UAV-Based-Aquatic-Plant-Classification},
   year = {2026},
@@ -453,14 +519,14 @@ If you use this repository or its implementation in your research, please cite:
 
 ---
 
-# License
+## License
 
-This project is released under the MIT License.
+This project is distributed under the **MIT License**.
 
-[View License](LICENSE)
+[View LICENSE](LICENSE)
 
 ---
 
-# Acknowledgement
+## Acknowledgement
 
-This repository provides the implementation and experimental artifacts for a UAV-based aquatic plant classification workflow, covering dataset analysis, preprocessing, deep learning model development, locked test evaluation, robustness assessment, calibration and uncertainty analysis, selective prediction, explainability, and failure analysis.
+This repository provides a complete reliability-oriented experimental workflow for UAV-based aquatic plant classification. It combines dataset integrity analysis, preprocessing, deep learning model development, locked test evaluation, robustness testing, calibration and uncertainty analysis, selective prediction, explainability, and failure analysis within a reproducible research structure.
